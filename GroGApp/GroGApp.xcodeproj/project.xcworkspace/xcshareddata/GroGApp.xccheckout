@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7E0FF5E9-4004-4E8B-B948-784ED5FC110F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GroGApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E1A4C08B253EDCB5C7811D705325A59F65544581</key>
+		<string>https://github.com/justindaigle/grogapp-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GroGApp/GroGApp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E1A4C08B253EDCB5C7811D705325A59F65544581</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/justindaigle/grogapp-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E1A4C08B253EDCB5C7811D705325A59F65544581</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E1A4C08B253EDCB5C7811D705325A59F65544581</string>
+			<key>IDESourceControlWCCName</key>
+			<string>grogapp-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

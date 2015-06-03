@@ -79,6 +79,10 @@ class TimelineTableViewController: UITableViewController {
             }))
             self.presentViewController(successPrompt, animated: true, completion: nil)
         }))
+        prompt.addAction(UIAlertAction(title: "Change Password", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.changePasswordPrompt(false)
+        }))
         self.presentViewController(prompt, animated: true, completion: nil)
     }
     
@@ -211,10 +215,10 @@ class TimelineTableViewController: UITableViewController {
                 self.createAccountPrompt(false)
             }))
             otherPrompt.addAction(UIAlertAction(title: "Request Password Reset Code", style: UIAlertActionStyle.Default, handler: {(alertAction:UIAlertAction!) in
-                
+                self.requestResetCodePrompt(false)
             }))
             otherPrompt.addAction(UIAlertAction(title: "Enter Password Reset Code", style: UIAlertActionStyle.Default, handler: {(alertAction:UIAlertAction!) in
-                
+                self.resetPasswordPrompt(false)
             }))
             otherPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: {
                 (alertAction:UIAlertAction!) in
@@ -243,8 +247,57 @@ class TimelineTableViewController: UITableViewController {
         self.presentViewController(credentialPrompt, animated: true, completion: nil) // should probably have timeline loading stuff in another function that can be called after this
     }
     
+    func changePasswordPrompt(recursive:Bool) {
+        var chPrompt = UIAlertController(title: "Change Password", message: recursive ? "The passwords do not match, or your old password was incorrect.":"Confirm your old password and enter a new one.", preferredStyle: UIAlertControllerStyle.Alert)
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Old Password"
+            textField.secureTextEntry = true
+        })
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "New Password"
+            textField.secureTextEntry = true
+        })
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Confirm New Password"
+            textField.secureTextEntry = true
+        })
+        chPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let oField = chPrompt.textFields![0] as! UITextField
+            let nField = chPrompt.textFields![1] as! UITextField
+            let cField = chPrompt.textFields![2] as! UITextField
+            if (nField.text != cField.text) {
+                self.changePasswordPrompt(true)
+            }
+            else {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                let username = defaults.stringForKey("username")
+                let result = DataMethods.ChangePassword(username!, oField.text, nField.text)
+                if (result) {
+                    var sPrompt = UIAlertController(title: "Success", message: "Password changed successfully. You must now log back in.", preferredStyle: UIAlertControllerStyle.Alert)
+                    sPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                        (action:UIAlertAction!) in
+                        self.promptUserForCredentials(false)
+                    }))
+                    self.presentViewController(sPrompt, animated: true, completion: nil)
+                }
+                else {
+                    self.changePasswordPrompt(true)
+                }
+            }
+        }))
+        chPrompt.addAction((UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {
+            (action:UIAlertAction!) in
+            self.promptUserForCredentials(false)
+        })))
+        self.presentViewController(chPrompt, animated: true, completion: nil)
+    }
+    
     func createAccountPrompt(recursive:Bool) {
-        var accPrompt = UIAlertController(title: "Create Account", message: "Enter a username, email address, and password", preferredStyle: UIAlertControllerStyle.Alert)
+        var accPrompt = UIAlertController(title: "Create Account", message: recursive ? "Error: Username or email already in use, or password less than 8 characters":"Enter a username, email address, and password", preferredStyle: UIAlertControllerStyle.Alert)
         accPrompt.addTextFieldWithConfigurationHandler({
             (textField:UITextField!) in
             textField.placeholder = "Username"
@@ -279,12 +332,86 @@ class TimelineTableViewController: UITableViewController {
                 }))
                 self.presentViewController(passPrompt, animated: true, completion: nil)
             }
+            else {
+                let result = DataMethods.CreateAccount(uField.text, eField.text, pField.text)
+                if (result) {
+                    var sPrompt = UIAlertController(title: "Success", message: "Account created. You can now log in.", preferredStyle: UIAlertControllerStyle.Alert)
+                    sPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                        (action:UIAlertAction!) in
+                        self.promptUserForCredentials(false)
+                    }))
+                    self.presentViewController(sPrompt, animated: true, completion: nil)
+                }
+                else {
+                    self.createAccountPrompt(true)
+                }
+            }
         }))
         accPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {
             (alertAction:UIAlertAction!) in
             self.promptUserForCredentials(false)
         }))
         self.presentViewController(accPrompt, animated: true, completion: nil)
+    }
+    
+    func resetPasswordPrompt(recursive:Bool) {
+        var resPrompt = UIAlertController(title: "Reset Password", message: recursive ? "That isn't a valid password reset code." : "Enter your password reset code, and we'll email you a new password", preferredStyle: UIAlertControllerStyle.Alert)
+        resPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Reset Code"
+            textField.secureTextEntry = false
+        })
+        resPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let cField = resPrompt.textFields![0] as! UITextField
+            let result = DataMethods.ResetPassword(cField.text)
+            if (result) {
+                var sPrompt = UIAlertController(title: "Success", message: "A new password has been emailed to you. Please change it soon.", preferredStyle: UIAlertControllerStyle.Alert)
+                sPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                    (action:UIAlertAction!) in
+                    self.promptUserForCredentials(false)
+                }))
+                self.presentViewController(sPrompt, animated: true, completion: nil)
+            }
+            else {
+                self.resetPasswordPrompt(true)
+            }
+        }))
+        resPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {
+            (action:UIAlertAction!) in
+            self.promptUserForCredentials(false)
+        }))
+        self.presentViewController(resPrompt, animated: true, completion: nil)
+    }
+    
+    func requestResetCodePrompt(recursive:Bool) {
+        var reqPrompt = UIAlertController(title: "Request Reset Code", message: recursive ? "The username you entered was invalid. Try again.":"Enter your username, and we'll email you a code to reset your password.", preferredStyle: UIAlertControllerStyle.Alert)
+        reqPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Email"
+            textField.secureTextEntry = false
+        })
+        reqPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let uField = reqPrompt.textFields![0] as! UITextField
+            let result = DataMethods.ReqPasswordReset(uField.text)
+            if (result) {
+                var sPrompt = UIAlertController(title: "Success", message: "A request code has been sent to you. Go back to the menu and paste the code.", preferredStyle: UIAlertControllerStyle.Alert)
+                sPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+                    (action:UIAlertAction!) in
+                    self.promptUserForCredentials(false)
+                }))
+                self.presentViewController(sPrompt, animated: true, completion: nil)
+            }
+            else {
+                self.requestResetCodePrompt(true)
+            }
+        }))
+        reqPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.promptUserForCredentials(false)
+        }))
+        self.presentViewController(reqPrompt, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

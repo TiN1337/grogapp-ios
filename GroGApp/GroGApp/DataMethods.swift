@@ -31,6 +31,74 @@ class DataMethods {
         }
     }
     
+    class func ChangePassword(username:String, _ password:String, _ newPass:String) -> Bool {
+        var json:JSON = ["type":"changepassword", "username":username, "password":password, "content":newPass]
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func ResetPassword(code:String) -> Bool {
+        var json:JSON = ["type":"resetpassword", "content":code]
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func ReqPasswordReset(username:String) -> Bool {
+        var json:JSON = ["type":"requestpasswordreset", "username":username]
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func CreateAccount(username:String, _ email:String, _ password:String) -> Bool {
+        var json:JSON = ["type":"signup", "username":username, "email":email, "password":password]
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
     class func DeleteFriend(username:String, _ password:String, _ requsername:String) -> Bool {
         var json:JSON = ["type":"deletefriend", "username":username, "password":password, "requsername":requsername]
         
