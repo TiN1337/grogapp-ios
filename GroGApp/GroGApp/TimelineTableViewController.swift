@@ -83,6 +83,10 @@ class TimelineTableViewController: UITableViewController {
             (action:UIAlertAction!) in
             self.changePasswordPrompt(false)
         }))
+        prompt.addAction(UIAlertAction(title: "My Profile", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.myProfilePrompt()
+        }))
         self.presentViewController(prompt, animated: true, completion: nil)
     }
     
@@ -245,6 +249,116 @@ class TimelineTableViewController: UITableViewController {
         }))
         
         self.presentViewController(credentialPrompt, animated: true, completion: nil) // should probably have timeline loading stuff in another function that can be called after this
+    }
+    
+    func myProfilePrompt() {
+        var pPrompt = UIAlertController(title: "My Profile", message: "Change your avatar, real name, bio, or location here", preferredStyle: UIAlertControllerStyle.Alert)
+        pPrompt.addAction((UIAlertAction(title: "Avatar", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.changeAvatarPrompt()
+        })))
+        pPrompt.addAction((UIAlertAction(title: "Bio", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.changeBioPrompt()
+        })))
+        pPrompt.addAction((UIAlertAction(title: "Location", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.changeLocPrompt()
+        })))
+        pPrompt.addAction((UIAlertAction(title: "Real Name", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            self.changeRNamePrompt()
+        })))
+        pPrompt.addAction((UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)))
+        self.presentViewController(pPrompt, animated: true, completion: nil)
+    }
+    
+    func changeAvatarPrompt() {
+        var chPrompt = UIAlertController(title: "Change Avatar", message: "Link to the image URL of your desired avatar (must be hosted elsewhere; should end in .jpg or .png or something)", preferredStyle: UIAlertControllerStyle.Alert)
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Image URL"
+            textField.secureTextEntry = false
+        })
+        chPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let field = chPrompt.textFields![0] as! UITextField
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let result = DataMethods.ChangeAvatar(username!, password!, field.text)
+            var mPrompt = UIAlertController(title: result ? "Success":"Failure", message: result ? "Avatar changed successfully." : "Something went wrong.", preferredStyle: UIAlertControllerStyle.Alert)
+            mPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(mPrompt, animated: true, completion: nil)
+        }))
+        chPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(chPrompt, animated: true, completion: nil)
+    }
+    
+    func changeBioPrompt() {
+        var chPrompt = UIAlertController(title: "Change Bio", message: "Type a new bio here", preferredStyle: UIAlertControllerStyle.Alert)
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Bio Text"
+            textField.secureTextEntry = false
+        })
+        chPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let field = chPrompt.textFields![0] as! UITextField
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let result = DataMethods.ChangeBio(username!, password!, field.text)
+            var mPrompt = UIAlertController(title: result ? "Success":"Failure", message: result ? "Bio changed successfully." : "Something went wrong.", preferredStyle: UIAlertControllerStyle.Alert)
+            mPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(mPrompt, animated: true, completion: nil)
+        }))
+        chPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(chPrompt, animated: true, completion: nil)
+    }
+    
+    func changeLocPrompt() {
+        var chPrompt = UIAlertController(title: "Change Location", message: "Enter the name of your location.", preferredStyle: UIAlertControllerStyle.Alert)
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Location"
+            textField.secureTextEntry = false
+        })
+        chPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let field = chPrompt.textFields![0] as! UITextField
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let result = DataMethods.ChangeLocation(username!, password!, field.text)
+            var mPrompt = UIAlertController(title: result ? "Success":"Failure", message: result ? "Location changed successfully." : "Something went wrong.", preferredStyle: UIAlertControllerStyle.Alert)
+            mPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(mPrompt, animated: true, completion: nil)
+        }))
+        chPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(chPrompt, animated: true, completion: nil)
+    }
+    
+    func changeRNamePrompt() {
+        var chPrompt = UIAlertController(title: "Change Real Name", message: "Enter your real name here.", preferredStyle: UIAlertControllerStyle.Alert)
+        chPrompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Real Name"
+            textField.secureTextEntry = false
+        })
+        chPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: {
+            (action:UIAlertAction!) in
+            let field = chPrompt.textFields![0] as! UITextField
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let result = DataMethods.ChangeRealName(username!, password!, field.text)
+            var mPrompt = UIAlertController(title: result ? "Success":"Failure", message: result ? "Real name changed successfully." : "Something went wrong.", preferredStyle: UIAlertControllerStyle.Alert)
+            mPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(mPrompt, animated: true, completion: nil)
+        }))
+        chPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(chPrompt, animated: true, completion: nil)
     }
     
     func changePasswordPrompt(recursive:Bool) {

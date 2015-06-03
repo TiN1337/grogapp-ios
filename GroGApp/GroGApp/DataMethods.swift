@@ -31,6 +31,78 @@ class DataMethods {
         }
     }
     
+    class func ChangeRealName(username:String, _ password:String, _ rname:String) -> Bool {
+        var json:JSON = ["type":"updaterealname", "username":username, "password":password, "content":rname]
+        
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func ChangeLocation(username:String, _ password:String, _ loc:String) -> Bool {
+        var json:JSON = ["type":"updatelocation", "username":username, "password":password, "content":loc]
+        
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func ChangeBio(username:String, _ password:String, _ bio:String) -> Bool {
+        var json:JSON = ["type":"updatebio", "username":username, "password":password, "content":bio]
+        
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
+    class func ChangeAvatar(username:String, _ password:String, _ avaurl:String) -> Bool {
+        var json:JSON = ["type":"updateavatar", "username":username, "password":password, "content":avaurl]
+        
+        var resp = Networking.MakeTransaction(json)
+        
+        if let success = resp["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
     class func ChangePassword(username:String, _ password:String, _ newPass:String) -> Bool {
         var json:JSON = ["type":"changepassword", "username":username, "password":password, "content":newPass]
         var resp = Networking.MakeTransaction(json)
