@@ -31,7 +31,8 @@ class Networking {
         
         // THIS right here took about five hours to figure out... then only a couple of minutes to actually fix
         // apparently stuff like JSON data has to be passed in a query string, or common characters just give trouble
-        let apiUrlString = "https://home.justindaigle.com:6707/api/grog?content="
+        // let apiUrlString = "https://home.justindaigle.com:6707/api/grog?content="
+        let apiUrlString = "https://api.getgrog.com:6707/api/grog?content="
         
         var reqDataString = reqData.stringByReplacingOccurrencesOfString("\n", withString: "") // clean newlines out of json
         
