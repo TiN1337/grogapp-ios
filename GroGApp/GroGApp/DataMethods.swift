@@ -31,6 +31,24 @@ class DataMethods {
         }
     }
     
+    class func RequestFriend(username:String, _ password:String, _ friend:String) -> Bool {
+        var json:JSON = ["type":"requestfriend", "username":username, "password":password, "requsername":friend]
+        
+        var jsonResponse = Networking.MakeTransaction(json)
+        
+        if let success = jsonResponse["success"].bool {
+            if (success) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
     class func ChangeRealName(username:String, _ password:String, _ rname:String) -> Bool {
         var json:JSON = ["type":"updaterealname", "username":username, "password":password, "content":rname]
         

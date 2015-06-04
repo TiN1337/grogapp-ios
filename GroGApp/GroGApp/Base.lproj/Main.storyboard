@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="x8R-Bd-NgN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="x8R-Bd-NgN">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--My Timeline-->
         <scene sceneID="R65-3b-eME">
             <objects>
-                <tableViewController id="BiG-qP-ih2" customClass="TimelineTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BiG-qP-ih2" customClass="TimelineTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="22" sectionFooterHeight="22" id="IyN-ls-YfH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="110" id="eBB-Tt-Yag" customClass="StatusTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="110" id="eBB-Tt-Yag" customClass="StatusTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="eBB-Tt-Yag" id="eu4-Zl-RBU">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -124,7 +123,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Rkl-lF-Y1h">
             <objects>
-                <viewController id="oPW-La-giQ" customClass="DetailViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oPW-La-giQ" customClass="DetailViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZqV-nJ-p0y"/>
                         <viewControllerLayoutGuide type="bottom" id="YDO-PL-Jdb"/>
@@ -314,8 +313,8 @@
         <!--Image Detail Table View Controller-->
         <scene sceneID="BD8-ip-vVl">
             <objects>
-                <tableViewController id="2BT-Cd-YuS" customClass="ImageDetailTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" sectionHeaderHeight="22" sectionFooterHeight="22" id="twZ-YL-9oc" customClass="ImageDetailTableView" customModule="Taylor" customModuleProvider="target">
+                <tableViewController id="2BT-Cd-YuS" customClass="ImageDetailTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" sectionHeaderHeight="22" sectionFooterHeight="22" id="twZ-YL-9oc" customClass="ImageDetailTableView" customModule="GroGApp" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -327,7 +326,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="250" id="xzt-0F-40Q" customClass="ImageCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="250" id="xzt-0F-40Q" customClass="ImageCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xzt-0F-40Q" id="qIn-fP-GhL">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -360,13 +359,13 @@
         <!--Groups-->
         <scene sceneID="qBQ-qS-ybl">
             <objects>
-                <tableViewController id="iFV-XM-VOH" customClass="GroupsTableTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="iFV-XM-VOH" customClass="GroupsTableTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="F22-v2-FBU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="WgO-93-3A0" customClass="GroupsTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="WgO-93-3A0" customClass="GroupsTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WgO-93-3A0" id="MBx-lB-2Tg">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -406,13 +405,13 @@
         <!--Members-->
         <scene sceneID="p1s-hR-uLT">
             <objects>
-                <tableViewController id="gAH-a6-R7i" customClass="GroupMembershipTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="gAH-a6-R7i" customClass="GroupMembershipTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="XOD-h9-6lm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="1fB-cb-ljn" customClass="GroupsTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="1fB-cb-ljn" customClass="GroupsTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1fB-cb-ljn" id="S0E-Bn-b5L">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -493,13 +492,13 @@
         <!--Friend Requests-->
         <scene sceneID="K3C-Wz-qfJ">
             <objects>
-                <tableViewController title="Friend Requests" id="wof-0x-PxR" customClass="FriendRequestsTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Friend Requests" id="wof-0x-PxR" customClass="FriendRequestsTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="nwc-OO-7rL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="B3a-E4-hvs" customClass="GroupsTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="B3a-E4-hvs" customClass="GroupsTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B3a-E4-hvs" id="NxZ-Gk-pFc">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -522,7 +521,14 @@
                             <outlet property="delegate" destination="wof-0x-PxR" id="SgO-uW-z7a"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friend Requests" id="rGM-ob-hLZ"/>
+                    <navigationItem key="navigationItem" title="Friend Requests" id="rGM-ob-hLZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Mn2-ev-cyH">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="RequestFriendUI" destination="wof-0x-PxR" id="Ggs-Lm-nps"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9At-g0-aqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -531,13 +537,13 @@
         <!--Friends-->
         <scene sceneID="xAZ-Oi-vqN">
             <objects>
-                <tableViewController id="NaA-cd-38o" customClass="FriendsTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="NaA-cd-38o" customClass="FriendsTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="yvf-fW-i5g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="xra-n7-6EO" customClass="GroupsTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="xra-n7-6EO" customClass="GroupsTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xra-n7-6EO" id="Xf0-h5-QCo">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -609,7 +615,7 @@
         <!--New Post-->
         <scene sceneID="tCZ-3W-MJP">
             <objects>
-                <viewController id="6Bf-jB-Y7c" customClass="PostViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6Bf-jB-Y7c" customClass="PostViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zrE-Mh-Mic"/>
                         <viewControllerLayoutGuide type="bottom" id="MXK-Hi-OcG"/>
@@ -674,13 +680,13 @@
         <!--Mentions-->
         <scene sceneID="SdG-Gz-tgd">
             <objects>
-                <tableViewController id="tHj-zA-5WY" customClass="MentionsTableViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="tHj-zA-5WY" customClass="MentionsTableViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="8cs-Yr-s4O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="dLI-1y-T95" customClass="MentionsTableViewCell" customModule="Taylor" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="dLI-1y-T95" customClass="MentionsTableViewCell" customModule="GroGApp" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dLI-1y-T95" id="pvu-ch-Vbn">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -772,7 +778,7 @@
         <!--About View Controller-->
         <scene sceneID="sqt-tG-vQP">
             <objects>
-                <viewController id="lAS-W5-db6" customClass="AboutViewController" customModule="Taylor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="lAS-W5-db6" customClass="AboutViewController" customModule="GroGApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GbG-o9-NP2"/>
                         <viewControllerLayoutGuide type="bottom" id="43r-QU-exe"/>

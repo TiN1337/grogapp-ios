@@ -67,6 +67,24 @@ class TimelineTableViewController: UITableViewController {
                 self.presentViewController(newPrompt, animated: true, completion: nil)
             }
         }))
+        /*prompt.addAction(UIAlertAction(title: "Request Friend", style: UIAlertActionStyle.Default, handler: {
+            (alertAction:UIAlertAction!) in
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let text = prompt.textFields![0] as! UITextField
+            var success = DataMethods.RequestFriend(username!, password!, text.text)
+            if (success) {
+                var newPrompt = UIAlertController(title: "Success", message: "Friend requested.", preferredStyle: UIAlertControllerStyle.Alert)
+                newPrompt.addAction((UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)))
+                self.presentViewController(newPrompt, animated: true, completion: nil)
+            }
+            else {
+                var newPrompt = UIAlertController(title: "Request Failed", message: "User does not exist.", preferredStyle: UIAlertControllerStyle.Alert)
+                newPrompt.addAction((UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)))
+                self.presentViewController(newPrompt, animated: true, completion: nil)
+            }
+        }))*/
         prompt.addAction(UIAlertAction(title: "Log Out", style: UIAlertActionStyle.Default, handler: {
             (alertAction: UIAlertAction!) in
             var defaults = NSUserDefaults.standardUserDefaults()

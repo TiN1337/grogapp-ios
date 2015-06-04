@@ -12,6 +12,35 @@ class FriendRequestsTableViewController: UITableViewController {
     
     var reqs = [String]()
     
+    @IBAction func RequestFriendUI() {
+        var prompt = UIAlertController(title: "Request Friend", message: "Enter the username of the user to send a friend request to.", preferredStyle: UIAlertControllerStyle.Alert)
+        prompt.addTextFieldWithConfigurationHandler({
+            (textField:UITextField!) in
+            textField.placeholder = "Username"
+            textField.secureTextEntry = false
+        })
+        prompt.addAction(UIAlertAction(title: "Request Friend", style: UIAlertActionStyle.Default, handler: {
+            (alertAction:UIAlertAction!) in
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let username = defaults.stringForKey("username")
+            let password = defaults.stringForKey("password")
+            let text = prompt.textFields![0] as! UITextField
+            var success = DataMethods.RequestFriend(username!, password!, text.text)
+            if (success) {
+                var newPrompt = UIAlertController(title: "Success", message: "Friend requested.", preferredStyle: UIAlertControllerStyle.Alert)
+                newPrompt.addAction((UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)))
+                self.presentViewController(newPrompt, animated: true, completion: nil)
+            }
+            else {
+                var newPrompt = UIAlertController(title: "Request Failed", message: "User does not exist.", preferredStyle: UIAlertControllerStyle.Alert)
+                newPrompt.addAction((UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)))
+                self.presentViewController(newPrompt, animated: true, completion: nil)
+            }
+        }))
+        prompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(prompt, animated: true, completion: nil)
+    }
+    
     func loadFriendRequests() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let username = defaults.stringForKey("username")
