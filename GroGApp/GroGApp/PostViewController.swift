@@ -22,12 +22,20 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         let toUpload:UIImage = image
         var iData = UIImagePNGRepresentation(toUpload)
         var url = SwiftImgur.uploadImage(iData)
         postContent.text = postContent.text + url
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func uploadCameraImage() {
+        var imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerController.allowsEditing = true
+        self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     @IBAction func postAndGo() {
