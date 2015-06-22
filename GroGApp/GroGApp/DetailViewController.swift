@@ -17,6 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet var bioLabel:UILabel!
     @IBOutlet var locLabel:UILabel!
     
+    @IBOutlet var blockButton:UIButton!
+    
     @IBOutlet var contentLabel:UILabel!
     @IBOutlet var groupLabel:UILabel!
     @IBOutlet var dateLabel:UILabel!
@@ -25,6 +27,8 @@ class DetailViewController: UIViewController {
     
     var statusId = -1
     var username = ""
+    
+    var blocked:Bool = false
     
     var status:JSON!
     var profile:JSON!
@@ -35,6 +39,24 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func blockUnblock() {
+        if (blocked) {
+            blockButton.setTitle("Block", forState: UIControlState.Normal)
+            blockButton.setTitle("Block", forState: UIControlState.Selected)
+            var defaults = NSUserDefaults.standardUserDefaults()
+            var lUsername = defaults.valueForKey("username") as! String
+            var password = defaults.valueForKey("password") as! String
+            DataMethods.Unblock(lUsername, password, username)
+        } else {
+            blockButton.setTitle("Unblock", forState: UIControlState.Normal)
+            blockButton.setTitle("Unblock", forState: UIControlState.Selected)
+            var defaults = NSUserDefaults.standardUserDefaults()
+            var lUsername = defaults.valueForKey("username") as! String
+            var password = defaults.valueForKey("password") as! String
+            DataMethods.Block(lUsername, password, username)
+        }
+    }
+    
     override func viewDidAppear(animated: Bool) {
         var defaults = NSUserDefaults.standardUserDefaults()
         var lUsername = defaults.valueForKey("username") as! String
@@ -42,6 +64,16 @@ class DetailViewController: UIViewController {
         
         status = DataMethods.GetStatus(lUsername, password, statusId)
         profile = DataMethods.GetProfile(username)
+        
+        blocked = DataMethods.GetBlocked(lUsername, password, username)
+        
+        if (blocked) {
+            blockButton.setTitle("Unblock", forState: UIControlState.Normal)
+            blockButton.setTitle("Unblock", forState: UIControlState.Selected)
+        } else {
+            blockButton.setTitle("Block", forState: UIControlState.Normal)
+            blockButton.setTitle("Block", forState: UIControlState.Selected)
+        }
         
         displayNameLabel.text = profile["displayname"].stringValue
         userNameLabel.text = "@" + profile["username"].stringValue

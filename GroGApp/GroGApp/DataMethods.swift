@@ -31,6 +31,36 @@ class DataMethods {
         }
     }
     
+    class func Unblock(username:String, _ password:String, _ requsername:String) {
+        var json:JSON = ["type":"unblockuser", "username":username, "password":password, "requsername":requsername]
+        
+        Networking.MakeTransaction(json)
+    }
+    
+    class func Block(username:String, _ password:String, _ requsername:String) {
+        var json:JSON = ["type":"blockuser", "username":username, "password":password, "requsername":requsername]
+        
+        Networking.MakeTransaction(json)
+    }
+    
+    class func GetBlocked(username:String, _ password:String, _ requsername:String) -> Bool {
+        var json:JSON = ["type":"isblocked", "username":username, "password":password, "requsername":requsername]
+        
+        var jsonResponse = Networking.MakeTransaction(json)
+        
+        if let blocked = jsonResponse["blocked"].bool {
+            if (blocked) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return false
+        }
+    }
+    
     class func RequestFriend(username:String, _ password:String, _ friend:String) -> Bool {
         var json:JSON = ["type":"requestfriend", "username":username, "password":password, "requsername":friend]
         

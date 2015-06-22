@@ -430,7 +430,7 @@ class TimelineTableViewController: UITableViewController {
     }
     
     func createAccountPrompt(recursive:Bool) {
-        var accPrompt = UIAlertController(title: "Create Account", message: recursive ? "Error: Username or email already in use, or password less than 8 characters":"Enter a username, email address, and password", preferredStyle: UIAlertControllerStyle.Alert)
+        var accPrompt = UIAlertController(title: "Create Account", message: recursive ? "Error: Username or email already in use, or password less than 8 characters":"Enter a username, email address, and password. Your usage is bound by the GroG Platform Terms of Service.", preferredStyle: UIAlertControllerStyle.Alert)
         accPrompt.addTextFieldWithConfigurationHandler({
             (textField:UITextField!) in
             textField.placeholder = "Username"
@@ -483,6 +483,10 @@ class TimelineTableViewController: UITableViewController {
         accPrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: {
             (alertAction:UIAlertAction!) in
             self.promptUserForCredentials(false)
+        }))
+        accPrompt.addAction(UIAlertAction(title: "View TOS", style: UIAlertActionStyle.Default, handler: {
+            (alertAction:UIAlertAction!) in
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://getgrog.com/tos.aspx")!)
         }))
         self.presentViewController(accPrompt, animated: true, completion: nil)
     }

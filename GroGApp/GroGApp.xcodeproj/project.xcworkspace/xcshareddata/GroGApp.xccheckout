@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>7E0FF5E9-4004-4E8B-B948-784ED5FC110F</string>
 	<key>IDESourceControlProjectName</key>
-	<string>GroGApp</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>E1A4C08B253EDCB5C7811D705325A59F65544581</key>
 		<string>https://github.com/justindaigle/grogapp-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GroGApp/GroGApp.xcodeproj</string>
+	<string>GroGApp/GroGApp.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>E1A4C08B253EDCB5C7811D705325A59F65544581</key>
