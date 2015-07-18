@@ -261,6 +261,7 @@ class TimelineTableViewController: UITableViewController {
                 var successPrompt = UIAlertController(title: "Login Successful", message: "You are now logged in.", preferredStyle: UIAlertControllerStyle.Alert)
                 successPrompt.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(successPrompt, animated: true, completion: nil)
+                self.updateStatusView()
             }
             else {
                 self.promptUserForCredentials(true)
