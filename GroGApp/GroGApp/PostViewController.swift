@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     var groups = [JSON]()
 
@@ -100,6 +100,14 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if (postContent.text == "Post text here...") {
+            postContent.text = ""
+        }
+        postContent.textColor = UIColor.blackColor()
+        postContent.becomeFirstResponder()
     }
     
 

@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var blockButton:UIButton!
     
-    @IBOutlet var contentLabel:UILabel!
+    @IBOutlet var contentLabel:UITextView!
     @IBOutlet var groupLabel:UILabel!
     @IBOutlet var dateLabel:UILabel!
     
