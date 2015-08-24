@@ -54,14 +54,23 @@ class Networking {
         
         println(interimString) // debug
         
-        // server pads the entire JSON with quotes; remove these
-        interimString = interimString.substringFromIndex(advance(interimString.startIndex, 1))
-        interimString = interimString.substringToIndex(advance(interimString.endIndex, -1))
+        println("first char of interim string:")
+        println(interimString.substringToIndex(advance(interimString.startIndex, 1)))
         
-        // quotes are escaped coming from the server; unescape them
-        interimString = interimString.stringByReplacingOccurrencesOfString("\\\"", withString: "\"") // this is confusing
-        interimString = interimString.stringByReplacingOccurrencesOfString("\\\\\"", withString: "\\\"")
-        // interimString = interimString.stringByReplacingOccurrencesOfString("\\", withString: "")
+        if (interimString.substringToIndex(advance(interimString.startIndex, 1)) == "\"") {
+            println("old api in use")
+            // server pads the entire JSON with quotes; remove these
+            interimString = interimString.substringFromIndex(advance(interimString.startIndex, 1))
+            interimString = interimString.substringToIndex(advance(interimString.endIndex, -1))
+            
+            // quotes are escaped coming from the server; unescape them
+            interimString = interimString.stringByReplacingOccurrencesOfString("\\\"", withString: "\"") // this is confusing
+            interimString = interimString.stringByReplacingOccurrencesOfString("\\\\\"", withString: "\\\"")
+            // interimString = interimString.stringByReplacingOccurrencesOfString("\\", withString: "")
+        }
+        else {
+            println("new api in use")
+        }
         
         println(interimString) // debug
         
