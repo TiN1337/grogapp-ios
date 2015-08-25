@@ -73,15 +73,19 @@ class MentionsTableViewController: UITableViewController {
         
         // min += 5
         
-        var tempStatuses:JSON = resp["statuses"]
+        var tempStatuses:JSON? = resp["statuses"]
         
         statuses.removeAll(keepCapacity: false)
         
         // add each of these to tempStatuses
-        for (index: String, subJson: JSON) in tempStatuses {
-            statuses.append(subJson);
-            println(subJson);
+        if (tempStatuses != nil)
+        {
+            for (index: String, subJson: JSON) in tempStatuses! {
+                statuses.append(subJson);
+                println(subJson);
             }
+        }
+        
         
         statusesView.reloadData()
     }
@@ -98,22 +102,26 @@ class MentionsTableViewController: UITableViewController {
         cell.contentLabel.text = statuses[indexPath.row]["content"].string
         
         // get the avatar
-        if (statuses[indexPath.row]["authoravatar"].string! != "") {
-            if (contains(avatarUrls, statuses[indexPath.row]["authoravatar"].string!)) {
-                var index = find(avatarUrls, statuses[indexPath.row]["authoravatar"].string!)!
-                cell.avatarView.image = avatars[index]
-            }
-            else {
-                avatarUrls.append(statuses[indexPath.row]["authoravatar"].string!)
-                var avaUrl = NSURL(string:statuses[indexPath.row]["authoravatar"].string!)
-                if let avUrl = avaUrl {
-                    var avaData = NSData(contentsOfURL: avUrl)
-                    var img = UIImage(data: avaData!)!
-                    avatars.append(img)
-                    
-                    cell.avatarView.image = UIImage(data: avaData!)
+        if (statuses[indexPath.row]["authoravatar"].string != nil)
+        {
+            if (statuses[indexPath.row]["authoravatar"].string! != "") {
+                if (contains(avatarUrls, statuses[indexPath.row]["authoravatar"].string!)) {
+                    var index = find(avatarUrls, statuses[indexPath.row]["authoravatar"].string!)!
+                    cell.avatarView.image = avatars[index]
                 }
-            }
+                else {
+                    avatarUrls.append(statuses[indexPath.row]["authoravatar"].string!)
+                    var avaUrl = NSURL(string:statuses[indexPath.row]["authoravatar"].string!)
+                    if let avUrl = avaUrl {
+                        var avaData = NSData(contentsOfURL: avUrl)
+                        var img = UIImage(data: avaData!)!
+                        avatars.append(img)
+                        
+                        cell.avatarView.image = UIImage(data: avaData!)
+                    }
+                }
+        }
+        
             
             
         }
